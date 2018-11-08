@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Mouse : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
+	public GameObject Thing;
+	void Start()
+	{
+		Thing.SetActive (false);
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	void OnMouseEnter()
+	{
+		Thing.SetActive (true);
 	}
 }
