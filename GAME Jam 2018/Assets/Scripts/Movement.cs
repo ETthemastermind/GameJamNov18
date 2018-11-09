@@ -6,7 +6,18 @@ public class Movement : MonoBehaviour {
 
 	public float MoveSpeed;
 	public float JumpPower;
-	private bool OnGround=true; 
+	private bool OnGround=true;
+	bool isMoving = true;
+
+	public void SetIsMoving(bool _move)
+	{
+		isMoving = _move;
+	}
+
+	public bool GetIsMoving()
+	{
+		return isMoving;
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -14,17 +25,19 @@ public class Movement : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if (Input.GetKey (KeyCode.D))
-			transform.Translate (Vector3.right * MoveSpeed * Time.deltaTime);
-		if (Input.GetKey (KeyCode.A))
-			transform.Translate (-Vector2.right * MoveSpeed * Time.deltaTime);
-		if (OnGround == true) 
+	void Update () 
+	{
+		if (isMoving) 
 		{
-			if (Input.GetKey (KeyCode.W)) 
-			{
-				transform.Translate (Vector2.up * JumpPower);
-				OnGround = false;
+			if (Input.GetKey (KeyCode.D))
+				transform.Translate (Vector3.right * MoveSpeed * Time.deltaTime);
+			if (Input.GetKey (KeyCode.A))
+				transform.Translate (-Vector2.right * MoveSpeed * Time.deltaTime);
+			if (OnGround == true) {
+				if (Input.GetKey (KeyCode.W)) {
+					transform.Translate (Vector2.up * JumpPower);
+					OnGround = false;
+				}
 			}
 		}
 			

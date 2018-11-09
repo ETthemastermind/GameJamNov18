@@ -10,15 +10,19 @@ public class Mouse : MonoBehaviour {
 	public Sprite Gsprite;
 	public Sprite Fsprite;
 	private bool CanTM = false;
-	private bool IsTM = false;
+
 
 	SpriteRenderer SR;
 	BoxCollider2D BC;
+	public Movement MS;
+
 
 	void Start()
 	{
 		BC = GetComponent<BoxCollider2D> ();
 		SR = GetComponent<SpriteRenderer> ();
+
+
 
 	}
 	void OnMouseOver()
@@ -27,6 +31,7 @@ public class Mouse : MonoBehaviour {
 		Debug.Log ("Mouse Over");
 		SR.sprite = Gsprite;
 		CanTM = true;
+
 	}
 
 
@@ -38,12 +43,18 @@ public class Mouse : MonoBehaviour {
 
 	void Update()
 	{
-		if (CanTM == true && Input.GetMouseButton (0)) {
+		if (CanTM == true && Input.GetMouseButton (0)) 
+		{
 			SR.sprite = Fsprite;
 			BC.isTrigger = false;
-		} else 
+
+			MS.SetIsMoving (false);
+
+		}
+		else 
 		{
 			BC.isTrigger = true;
+			MS.SetIsMoving (true);
 		}
 
 
