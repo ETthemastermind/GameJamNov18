@@ -21,6 +21,7 @@ public class Mouse : MonoBehaviour {
 	{
 		BC = GetComponent<BoxCollider2D> ();
 		SR = GetComponent<SpriteRenderer> ();
+        
 
 
 
