@@ -7,7 +7,9 @@ public class PickUp : MonoBehaviour {
 	public Vector3 offset;
 	private int x = 0;
 	private int isPickedUp = 0;
+	private int numb = 1;
     Rigidbody2D Rb;
+
    
 
 
@@ -25,17 +27,21 @@ public class PickUp : MonoBehaviour {
 	void Update () 
 	{
 
-		if (x != 0 && isPickedUp == 1)  
+		if (x != 0 && isPickedUp == 1 && numb==1) 
 		{
 			Debug.Log ("Picked up");
 			transform.position = son.transform.position + offset;
+
+
 		}
 
-		if(Input.GetKeyDown(KeyCode.O))
+		if(Input.GetKeyDown(KeyCode.O) && x == 1)
 		{
+			numb = 0;
 			if (isPickedUp == 1) 
 			{
 				isPickedUp = 0;
+
                 
 
 
@@ -44,6 +50,8 @@ public class PickUp : MonoBehaviour {
 			else if (isPickedUp == 0) 
 			{
 				isPickedUp = 1;
+				numb = 1;
+
                 
                 
 			}
@@ -67,15 +75,19 @@ public class PickUp : MonoBehaviour {
 			Debug.Log ("Player in area");
 			Debug.Log ("Pick up plank");
 			x = 1;
-            Rb.gravityScale = 0;
+            //Rb.gravityScale = 0;
 
         }
 
+
+
+
+
 	}
-	void OnCollisionExit2D (Collision2D col)
+	/*void OnCollisionExit2D (Collision2D col)
 	{
         Rb.gravityScale = 1;
         x = 0;
 	}
-
+*/
 }

@@ -8,6 +8,8 @@ TagManager:
   - Father
   - Son
   - Ladder
+  - Plank
+  - Crate
   layers:
   - Default
   - TransparentFX
@@ -18,8 +20,8 @@ TagManager:
   - 
   - 
   - Floor
-  - 
-  - 
+  - player
+  - Plank
   - 
   - 
   - 

@@ -9,10 +9,13 @@ public class SonWalkScript : MonoBehaviour {
 	public float MoveSpeed;
 	public float JumpPower;
 	private bool OnGround=true;
+	private bool CanClimbLadder = false;
 	Animator myAnim;
+	public float LadderSpeed = 6f;
 
 
 	SpriteRenderer SR;
+	Rigidbody2D RB;
 
 	private bool isMoving = false;
 
@@ -24,6 +27,7 @@ public class SonWalkScript : MonoBehaviour {
 	{
 		SR = GetComponent<SpriteRenderer> ();
 		myAnim = GetComponent<Animator> ();
+		RB = GetComponent<Rigidbody2D> ();
 
 	}
 
@@ -40,7 +44,7 @@ public class SonWalkScript : MonoBehaviour {
 		if (Input.GetKey (KeyCode.J)) {
 			transform.Translate (Vector3.left * MoveSpeed * Time.deltaTime);
 			isMoving = true;
-			myAnim.SetBool ("IsWalking", isMoving);
+			myAnim.SetBool ("IsWalkingLeft", isMoving);
 
 		}
 
@@ -49,14 +53,29 @@ public class SonWalkScript : MonoBehaviour {
 				transform.Translate (Vector2.up * JumpPower);
 				OnGround = false;
 			}
+
+		
+
 		}
 
 		if (isMoving && !Input.GetKey ("j") && !Input.GetKey ("l")) 
 		{
 			isMoving = false;
 			myAnim.SetBool ("IsWalking", isMoving);
+			myAnim.SetBool ("IsWalkingLeft", isMoving);
 		}
+
+
+		if (CanClimbLadder == true && Input.GetKey (KeyCode.I)) 
+		{
+			Debug.Log ("Climbing Ladder");
+			RB.velocity = new Vector2 (0, LadderSpeed);
+
+		}
+
 	}
+
+
 		
 
 
@@ -67,7 +86,36 @@ public class SonWalkScript : MonoBehaviour {
 		{
 			OnGround = true;
 		}
+
+
+
 	}
+
+
+	void OnTriggerEnter2D (Collider2D other)
+	{
+		if (other.gameObject.tag == "Ladder") 
+		{
+			Debug.Log ("Can Climb");
+			CanClimbLadder = true;
+
+
+		}
+	}
+
+	void OnTriggerExit2D (Collider2D other)
+	{
+		if (other.gameObject.tag == "Ladder") 
+		{
+			CanClimbLadder = false;
+			Debug.Log ("Can't Climb");
+
+
+		}
+	}
+
+
+
 
 
 

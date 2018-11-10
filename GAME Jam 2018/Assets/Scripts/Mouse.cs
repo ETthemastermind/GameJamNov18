@@ -51,7 +51,8 @@ public class Mouse : MonoBehaviour {
 			MS.SetIsMoving (false);
 			Debug.Log ("FALSE");
 
-		} else if (Input.GetMouseButtonUp (0)) {
+		} else if (Input.GetMouseButtonUp (0)) 
+		{
 			MS.SetIsMoving (true);
 			Debug.Log ("TRUE");
 		}
