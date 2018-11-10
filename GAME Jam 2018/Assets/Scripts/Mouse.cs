@@ -44,18 +44,21 @@ public class Mouse : MonoBehaviour {
 
 	void Update()
 	{
-		if (CanTM == true && Input.GetMouseButton (0)) 
-		{
+		if (CanTM == true && Input.GetMouseButton (0)) {
 			SR.sprite = Fsprite;
 			BC.isTrigger = false;
 
 			MS.SetIsMoving (false);
+			Debug.Log ("FALSE");
 
+		} else if (Input.GetMouseButtonUp (0)) {
+			MS.SetIsMoving (true);
+			Debug.Log ("TRUE");
 		}
 		else 
 		{
 			BC.isTrigger = true;
-			MS.SetIsMoving (true);
+
 		}
 
 

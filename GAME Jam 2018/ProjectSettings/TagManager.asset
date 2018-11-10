@@ -7,6 +7,7 @@ TagManager:
   - Floor
   - Father
   - Son
+  - Ladder
   layers:
   - Default
   - TransparentFX
