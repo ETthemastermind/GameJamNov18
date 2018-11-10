@@ -10,7 +10,9 @@ public class Mouse : MonoBehaviour {
 	public Sprite Gsprite;
 	public Sprite Fsprite;
 	private bool CanTM = false;
+	private AudioSource source;
 
+	public AudioSource AS;
 
 	SpriteRenderer SR;
 	BoxCollider2D BC;
@@ -47,6 +49,8 @@ public class Mouse : MonoBehaviour {
 		if (CanTM == true && Input.GetMouseButton (0)) {
 			SR.sprite = Fsprite;
 			BC.isTrigger = false;
+			//source = GetComponent<AudioSource> ();
+			//source.PlayOneShot;
 
 			MS.SetIsMoving (false);
 			Debug.Log ("FALSE");
